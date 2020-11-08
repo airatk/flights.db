@@ -3,3 +3,63 @@ main {
     
     height: calc(100vh - 2*var(--border-gap) - var(--header-height));
 }
+
+
+/* List */
+
+main > .list {
+    flex: 0 calc(60% - 2*var(--border-gap));
+    
+    padding: var(--border-gap);
+    
+    overflow-y: auto;
+}
+
+main > .list::-webkit-scrollbar {
+    display: none;
+}
+
+main > .list > article + article {
+    margin-top: var(--border-gap);
+}
+
+main > .list > article {
+    display: flex;
+    
+    flex-wrap: wrap;
+    
+    padding: var(--border-gap);
+}
+
+main > .list > article > div {
+    flex: 1;
+}
+
+/* Airline */
+
+main > .list > .airline > div:not(.airline-code) {
+    text-align: right;
+}
+
+main > .list > .airline > .name {
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .airline > .site {
+    flex: 0 100%;
+}
+
+/* Plane */
+
+main > .list > .plane > .name,
+main > .list > .plane > .seats-count {
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .plane > .name {
+    flex: 0 70%;
+}
+
+main > .list > .plane > .seats-count {
+    flex: 0 30%;
+}

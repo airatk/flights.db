@@ -6,5 +6,32 @@
 {% endblock %}
 
 {% block list %}
-
+    {% for airline in airlines %}
+        <article class="box airline">
+            <div class="airline-code">% IATA %</div>
+            <div class="name">% название %</div>
+            <div class="site">% сайт %</div>
+        </article>
+    {% endfor %}
+    
+    {% for plane in planes %}
+        <article class="box plane">
+            <div class="name">% название %</div>
+            <div class="seats-count">количество мест: {{ plane }}</div>
+            <div class="plane-code">% код %</div>
+            <div class="airline-code">% код авиакомпании %</div>
+            <div class="flight-code">% код рейса %</div>
+        </article>
+    {% endfor %}
+    
+    {% if airlines == [] %}
+        <span class="placeholder">% авиакомпаний нет %</span>
+    {% endif %}
+    {% if planes == [] %}
+        <span class="placeholder">% самолётов нет %</span>
+    {% endif %}
+    
+    {% if not airlines and not planes %}
+        <span class="placeholder">% пусто %</span>
+    {% endif %}
 {% endblock %}

@@ -6,5 +6,52 @@
 {% endblock %}
 
 {% block list %}
-
+    {% for airport in airports %}
+        <article class="box airport">
+            <div class="airport-code">% код %</div>
+            <div class="name">% название %</div>
+            <div class="city">город: % город %</div>
+            <div class="country">страна: % страна %</div>
+            <div class="longitude">долгота: % долгота %</div>
+            <div class="latitude">широта: % широта %</div>
+            <div class="timezone">% часовой пояс %</div>
+        </article>
+    {% endfor %}
+    
+    {% for flight in flights %}
+        <article class="box flight">
+            <div class="flight-code">% код %</div>
+            
+            <div class="departure-title">отбытие</div>
+            <div class="arrival-title">прибытие</div>
+            
+            <div class="departure-airport-code">% код аэропорта отбытия %</div>
+            <div class="arrival-airport-code">% код аэропорта прибытия %</div>
+            <div class="departure-date">% дата отбытия %</div>
+            <div class="arrival-date">% дата прибытия %</div>
+            <div class="departure-time">% время отбытия %</div>
+            <div class="arrival-time">% время прибытия %</div>
+            
+            <div class="time">время в пути: % время в пути %</div>
+            <div class="miles">мили: % мили %</div>
+            
+            <div class="seat-title">место</div>
+            
+            <div class="seat-class">% класс %</div>
+            <div class="seat-number">% номер места %</div>
+            
+            <div class="price">% цена %</div>
+        </article>
+    {% endfor %}
+    
+    {% if airports == [] %}
+        <span class="placeholder">% аэропортов нет %</span>
+    {% endif %}
+    {% if flights == [] %}
+        <span class="placeholder">% рейсов нет %</span>
+    {% endif %}
+    
+    {% if not airports and not flights %}
+        <span class="placeholder">% пусто %</span>
+    {% endif %}
 {% endblock %}

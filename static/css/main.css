@@ -63,3 +63,64 @@ main > .list > .plane > .name {
 main > .list > .plane > .seats-count {
     flex: 0 30%;
 }
+
+/* Airport */
+
+main > .list > .airport > .airport-code {
+    flex: 0 30%;
+}
+
+main > .list > .airport > .name {
+    flex: 0 70%;
+    
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .airport > .city,
+main > .list > .airport > .country,
+main > .list > .airport > .longitude,
+main > .list > .airport > .latitude {
+    flex: 0 50%;
+    
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .airport > .timezone {
+    flex: 0 100%;
+    
+    text-align: right;
+}
+
+/* Flight */
+
+main > .list > .flight > div {
+    flex: 0 50%;
+}
+
+main > .list > .flight > .flight-code {
+    flex: 0 100%;
+}
+
+main > .list > .flight > div:nth-child(2n):not(.price),
+main > .list > .flight > .flight-code,
+main > .list > .flight > .seat-title {
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .flight > .departure-title,
+main > .list > .flight > .arrival-title,
+main > .list > .flight > .time,
+main > .list > .flight > .miles,
+main > .list > .flight > .seat-title {
+    margin-top: var(--text-gap);
+}
+
+main > .list > .flight > .seat-title {
+    flex: 0 100%;
+}
+
+main > .list > .flight > .price {
+    flex: 0 100%;
+    
+    text-align: right;
+}

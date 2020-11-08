@@ -124,3 +124,28 @@ main > .list > .flight > .price {
     
     text-align: right;
 }
+
+
+/* Client */
+
+main > .list > .client > div {
+    flex: 0 50%;
+}
+
+main > .list > .client > div:nth-child(2n + 1):not(.email) {
+    margin-bottom: var(--text-gap);
+}
+
+main > .list > .client > .name {
+    flex: 0 100%;
+}
+
+/* Ticket */
+
+main > .list > .ticket > .status {
+    flex: 0 100%;
+    
+    margin-top: var(--text-gap);
+    
+    text-align: right;
+}

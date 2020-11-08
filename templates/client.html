@@ -6,5 +6,33 @@
 {% endblock %}
 
 {% block list %}
-
+    {% for client in clients %}
+        <article class="box client">
+            <div class="personal-id">% номер и серия паспорта %</div>
+            <div class="birth-date">% дата рождения %</div>
+            <div class="name">% имя %</div>
+            <div class="phone">% телефон %</div>
+            <div class="email">% электронная почта %</div>
+        </article>
+    {% endfor %}
+    
+    {% for ticket in tickets %}
+        <article class="box ticket">
+            <div class="ticket-code">% код %</div>
+            <div class="flight-code">% код рейса %</div>
+            <div class="personal-id">% номер и серия паспорта %</div>
+            <div class="status">% статус %</div>
+        </article>
+    {% endfor %}
+    
+    {% if clients == [] %}
+        <span class="placeholder">% клентов нет %</span>
+    {% endif %}
+    {% if tickets == [] %}
+        <span class="placeholder">% авиабилетов нет %</span>
+    {% endif %}
+    
+    {% if not clients and not tickets %}
+        <span class="placeholder">% пусто %</span>
+    {% endif %}
 {% endblock %}

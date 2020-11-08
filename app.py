@@ -12,25 +12,23 @@ def show_base_page():
 
 @app.route("/airline", methods=[ "GET" ])
 def show_airline_page():
-    return render_template("airline.html")
-
-@app.route("/airline", methods=[ "POST" ])
-def response_to_form_on_airline_page():
-    # TODO: Implement fetching airlines data.
-    # TODO: Implement fetching planes data.
+    # TODO: Implement fetching all available airlines data.
+    # TODO: Implement fetching all available planes data.
     
     airlines = [ i for i in range(2) ]
     planes = [ i for i in range(2) ]
     
     return render_template("airline.html", airlines=airlines, planes=planes)
 
+@app.route("/airline", methods=[ "POST" ])
+def response_to_form_on_airline_page():
+    # TODO: Handle received post requests.
+    
+    return render_template("airline.html")
+
 
 @app.route("/airport", methods=[ "GET" ])
 def show_airport_page():
-    return render_template("airport.html")
-
-@app.route("/airport", methods=[ "POST" ])
-def response_to_form_on_airport_page():
     # TODO: Implement fetching airports data.
     # TODO: Implement fetching flights data.
     
@@ -39,13 +37,15 @@ def response_to_form_on_airport_page():
     
     return render_template("airport.html", airports=airports, flights=flights)
 
+@app.route("/airport", methods=[ "POST" ])
+def response_to_form_on_airport_page():
+    # TODO: Handle received post requests.
+    
+    return render_template("airport.html")
+
 
 @app.route("/client", methods=[ "GET" ])
 def show_client_page():
-    return render_template("client.html")
-
-@app.route("/client", methods=[ "POST" ])
-def response_to_form_on_client_page():
     # TODO: Implement fetching clients data.
     # TODO: Implement fetching tickets data.
     
@@ -53,3 +53,9 @@ def response_to_form_on_client_page():
     tickets = [ i for i in range(2) ]
     
     return render_template("client.html", clients=clients, tickets=tickets)
+
+@app.route("/client", methods=[ "POST" ])
+def response_to_form_on_client_page():
+    # TODO: Handle received post requests.
+    
+    return render_template("client.html")

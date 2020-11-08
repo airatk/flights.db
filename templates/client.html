@@ -2,7 +2,30 @@
 
 
 {% block forms %}
-
+    <form id="client-add" class="box" action="{{ url_for('response_to_form_on_client_page') }}" method="post">
+        <input placeholder="номер и серия паспорта" name="personal-id" type="number" required>
+        <input placeholder="имя" name="name" type="text" required>
+        <input placeholder="дата рождения" name="birth-date" type="text" required>
+        <input placeholder="телефон" name="phone" type="text" required>
+        <input placeholder="электронная почта" name="email" type="text" required>
+        
+        <input value="добавить покупателя" type="submit">
+    </form>
+    
+    <form id="ticket-add" class="box" action="{{ url_for('response_to_form_on_client_page') }}" method="post">
+        <input placeholder="код билета" name="ticket-code" type="text" required>
+        <input placeholder="номер и серия паспорта" name="personal-id" type="number" required>
+        <input placeholder="код рейса" name="flight-code" type="text" required>
+        <select name="status">
+            <option value="available" selected>доступен</option>
+            <option value="delayed">задержан</option>
+            <option value="on-its-way">в пути</option>
+            <option value="done">окончен</option>
+            <option value="cancelled">отменён</option>
+        </select>
+        
+        <input value="добавить билет" type="submit">
+    </form>
 {% endblock %}
 
 {% block list %}
@@ -24,13 +47,6 @@
             <div class="status">% статус %</div>
         </article>
     {% endfor %}
-    
-    {% if clients == [] %}
-        <span class="placeholder">% клентов нет %</span>
-    {% endif %}
-    {% if tickets == [] %}
-        <span class="placeholder">% авиабилетов нет %</span>
-    {% endif %}
     
     {% if not clients and not tickets %}
         <span class="placeholder">% пусто %</span>

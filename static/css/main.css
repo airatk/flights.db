@@ -5,6 +5,53 @@ main {
 }
 
 
+/* Forms */
+
+main > .forms {
+    flex: 0 calc(40% - 2*var(--border-gap));
+    
+    padding: var(--border-gap);
+    
+    overflow-y: auto;
+}
+
+main > .forms::-webkit-scrollbar {
+    display: none;
+}
+
+main > .forms > form {
+    display: flex;
+    
+    flex-direction: column;
+    
+    padding: var(--border-gap);
+}
+
+main > .forms > form + form {
+    margin-top: var(--border-gap);
+}
+
+main > .forms > form > input {
+    margin: 0;
+    padding: 5px;
+}
+
+main > .forms > form > input[type="submit"] {
+    margin-top: var(--border-gap);
+    
+    text-align: right;
+}
+
+main > .forms > form > input + input {
+    margin-top: var(--text-gap);
+}
+
+main > .forms > form > select {
+    margin-top: var(--text-gap);
+    margin-bottom: var(--text-gap);
+}
+
+
 /* List */
 
 main > .list {

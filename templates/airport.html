@@ -2,7 +2,34 @@
 
 
 {% block forms %}
-
+    <form id="airport-add" class="box" action="{{ url_for('response_to_form_on_airport_page') }}" method="post">
+        <input placeholder="код аэропорта" name="airport-code" type="text" required>
+        <input placeholder="название" name="name" type="text" required>
+        <input placeholder="город" name="city" type="text" required>
+        <input placeholder="страна" name="country" type="text" required>
+        <input placeholder="долгота" name="longitude" type="number" step="0.0001" required>
+        <input placeholder="широта" name="latitude" type="number" step="0.0001" required>
+        <input placeholder="часовой пояс" name="timezone" type="text" required>
+        
+        <input value="добавить аэропорт" type="submit">
+    </form>
+    
+    <form id="flight-add" class="box" action="{{ url_for('response_to_form_on_airport_page') }}" method="post">
+        <input placeholder="код рейса" name="flight-code" type="text" required>
+        <input placeholder="код аэропорта отбытия" name="departure-airport" type="text" required>
+        <input placeholder="код аэропорта прибытия" name="arrival-airport" type="text" required>
+        <input placeholder="дата отбытия" name="departure-date" type="text" required>
+        <input placeholder="дата прибытия" name="arrival-date" type="text" required>
+        <input placeholder="время отбытия" name="departure-time" type="text" required>
+        <input placeholder="время прибытия" name="arrival-time" type="text" required>
+        <input placeholder="время в пути" name="time" type="text" required>
+        <input placeholder="мили" name="miles" type="number" required>
+        <input placeholder="класс" name="class" type="text" required>
+        <input placeholder="номер места" name="seat-number" type="number" required>
+        <input placeholder="цена" name="price" type="number" step="0.01" required>
+        
+        <input value="добавить рейс" type="submit">
+    </form>
 {% endblock %}
 
 {% block list %}
@@ -43,13 +70,6 @@
             <div class="price">% цена %</div>
         </article>
     {% endfor %}
-    
-    {% if airports == [] %}
-        <span class="placeholder">% аэропортов нет %</span>
-    {% endif %}
-    {% if flights == [] %}
-        <span class="placeholder">% рейсов нет %</span>
-    {% endif %}
     
     {% if not airports and not flights %}
         <span class="placeholder">% пусто %</span>

@@ -2,7 +2,23 @@
 
 
 {% block forms %}
-
+    <form id="airline-add" class="box" action="{{ url_for('response_to_form_on_airline_page') }}" method="post">
+        <input placeholder="код авиакомпании" name="airline-code" type="text" required>
+        <input placeholder="название" name="name" type="text" required>
+        <input placeholder="сайт" name="site" type="url" required>
+        
+        <input value="добавить авиакомпанию" type="submit">
+    </form>
+    
+    <form id="plane-add" class="box" action="{{ url_for('response_to_form_on_airline_page') }}" method="post">
+        <input placeholder="название" name="name" type="text" required>
+        <input placeholder="код самолёта" name="plane-code" type="text" required>
+        <input placeholder="код авиакомпании" name="airline-code" type="text" required>
+        <input placeholder="код рейса" name="flight-code" type="text" required>
+        <input placeholder="количество мест" name="seats-count" type="number" required>
+        
+        <input value="добавить самолёт" type="submit">
+    </form>
 {% endblock %}
 
 {% block list %}
@@ -23,13 +39,6 @@
             <div class="flight-code">% код рейса %</div>
         </article>
     {% endfor %}
-    
-    {% if airlines == [] %}
-        <span class="placeholder">% авиакомпаний нет %</span>
-    {% endif %}
-    {% if planes == [] %}
-        <span class="placeholder">% самолётов нет %</span>
-    {% endif %}
     
     {% if not airlines and not planes %}
         <span class="placeholder">% пусто %</span>

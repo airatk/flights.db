@@ -1,0 +1,59 @@
+header {
+    display: flex;
+}
+
+
+/* Title */
+
+header > .title {
+    flex: 0 calc(60% - 2*var(--border-gap));
+    
+    height: var(--header-height);
+    
+    margin: 0;
+    padding: var(--border-gap);
+}
+
+header > .title > a {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+header > .title > a:link,
+header > .title > a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+
+/* Navigation */
+
+header > .navigation {
+    flex: 0 calc(40% - 2*var(--border-gap));
+    
+    display: flex;
+    
+    padding: var(--border-gap);
+    
+    align-items: center;
+    justify-content: space-between;
+}
+
+header > .navigation > a {
+    display: block;
+    
+    text-decoration: none;
+}
+
+header > .navigation > a:hover {
+    text-decoration: underline;
+}
+
+header > .navigation > a:active {
+    text-decoration: none;
+}
+
+header > .navigation > a:link,
+header > .navigation > a:visited {
+    color: var(--text-color);
+}

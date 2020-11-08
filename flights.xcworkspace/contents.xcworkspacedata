@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:app.py">
+   </FileRef>
+   <Group
+      location = "group:templates"
+      name = "templates">
+      <FileRef
+         location = "group:/Users/airatk/Documents/University/&#x411;&#x430;&#x437;&#x44b; &#x434;&#x430;&#x43d;&#x43d;&#x44b;&#x445;/&#x41a;&#x443;&#x440;&#x441;&#x43e;&#x432;&#x430;&#x44f; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x430;/flights.db/templates/base.html">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/airatk/Documents/University/&#x411;&#x430;&#x437;&#x44b; &#x434;&#x430;&#x43d;&#x43d;&#x44b;&#x445;/&#x41a;&#x443;&#x440;&#x441;&#x43e;&#x432;&#x430;&#x44f; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x430;/flights.db/templates/airline.html">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/airatk/Documents/University/&#x411;&#x430;&#x437;&#x44b; &#x434;&#x430;&#x43d;&#x43d;&#x44b;&#x445;/&#x41a;&#x443;&#x440;&#x441;&#x43e;&#x432;&#x430;&#x44f; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x430;/flights.db/templates/airport.html">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/airatk/Documents/University/&#x411;&#x430;&#x437;&#x44b; &#x434;&#x430;&#x43d;&#x43d;&#x44b;&#x445;/&#x41a;&#x443;&#x440;&#x441;&#x43e;&#x432;&#x430;&#x44f; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x430;/flights.db/templates/client.html">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:static"
+      name = "static">
+      <Group
+         location = "group:css"
+         name = "css">
+         <FileRef
+            location = "group:base.css">
+         </FileRef>
+         <FileRef
+            location = "group:header.css">
+         </FileRef>
+         <FileRef
+            location = "group:main.css">
+         </FileRef>
+      </Group>
+   </Group>
+</Workspace>

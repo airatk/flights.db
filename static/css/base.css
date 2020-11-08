@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    
+    color: var(--text-color);
+    font-family: sans-serif;
+    
+    overflow: hidden;
+    
+    --header-height: 40px;
+    --border-gap: 25px;
+    --text-gap: 10px;
+    
+    --text-color: black;
+}
+
+.box {
+    box-shadow: 0 0 0 1px black;
+}

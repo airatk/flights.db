@@ -1,0 +1,5 @@
+main {
+    display: flex;
+    
+    height: calc(100vh - 2*var(--border-gap) - var(--header-height));
+}

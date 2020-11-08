@@ -35,6 +35,11 @@
 {% block list %}
     {% for airport in airports %}
         <article class="box airport">
+            <div class="header">
+                <div class="title">Аэропорт</div>
+                <a class="delete-button" onclick="return confirm('Удалить аэропорт % название %?')" href="{{ url_for('response_to_form_on_airport_page') }}">x</a>
+            </div>
+            
             <div class="airport-code">% код %</div>
             <div class="name">% название %</div>
             <div class="city">город: % город %</div>
@@ -47,6 +52,11 @@
     
     {% for flight in flights %}
         <article class="box flight">
+            <div class="header">
+                <div class="title">Рейс</div>
+                <a class="delete-button" onclick="return confirm('Удалить рейс % код %?')" href="{{ url_for('response_to_form_on_airport_page') }}">x</a>
+            </div>
+            
             <div class="flight-code">% код %</div>
             
             <div class="departure-title">отбытие</div>

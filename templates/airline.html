@@ -24,6 +24,11 @@
 {% block list %}
     {% for airline in airlines %}
         <article class="box airline">
+            <div class="header">
+                <div class="title">Авиакомпания</div>
+                <a class="delete-button" onclick="return confirm('Удалить авиакомпанию % название %?')" href="{{ url_for('response_to_form_on_airline_page') }}">x</a>
+            </div>
+            
             <div class="airline-code">% IATA %</div>
             <div class="name">% название %</div>
             <div class="site">% сайт %</div>
@@ -32,6 +37,11 @@
     
     {% for plane in planes %}
         <article class="box plane">
+            <div class="header">
+                <div class="title">Самолёт</div>
+                <a class="delete-button" onclick="return confirm('Удалить самолёт % название %?')" href="{{ url_for('response_to_form_on_airline_page') }}">x</a>
+            </div>
+            
             <div class="name">% название %</div>
             <div class="seats-count">количество мест: {{ plane }}</div>
             <div class="plane-code">% код %</div>

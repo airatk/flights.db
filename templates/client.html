@@ -31,6 +31,11 @@
 {% block list %}
     {% for client in clients %}
         <article class="box client">
+            <div class="header">
+                <div class="title">Покупатель</div>
+                <a class="delete-button" onclick="return confirm('Удалить покупателя % имя %?')" href="{{ url_for('response_to_form_on_client_page') }}">x</a>
+            </div>
+            
             <div class="personal-id">% номер и серия паспорта %</div>
             <div class="birth-date">% дата рождения %</div>
             <div class="name">% имя %</div>
@@ -41,6 +46,11 @@
     
     {% for ticket in tickets %}
         <article class="box ticket">
+            <div class="header">
+                <div class="title">Авиабилет</div>
+                <a class="delete-button" onclick="return confirm('Удалить авиабилет % код %?')" href="{{ url_for('response_to_form_on_client_page') }}">x</a>
+            </div>
+            
             <div class="ticket-code">% код %</div>
             <div class="flight-code">% код рейса %</div>
             <div class="personal-id">% номер и серия паспорта %</div>

@@ -66,10 +66,6 @@ main > .list::-webkit-scrollbar {
     display: none;
 }
 
-main > .list > article + article {
-    margin-top: var(--border-gap);
-}
-
 main > .list > article {
     display: flex;
     
@@ -78,8 +74,45 @@ main > .list > article {
     padding: var(--border-gap);
 }
 
+main > .list > article + article {
+    margin-top: var(--border-gap);
+}
+
 main > .list > article > div {
     flex: 1;
+}
+
+main > section.list > article > .header {
+    flex: 0 100%;
+    
+    display: flex;
+    
+    margin-bottom: 20px;
+}
+
+main > section.list > article > .header > .title {
+    flex: 1;
+    
+    font-weight: bold;
+    
+    text-align: left;
+}
+
+main > section.list > article > .header > .delete-button {
+    flex: 0;
+    
+    text-align: right;
+}
+
+main > section.list > article > .header > .delete-button:link,
+main > section.list > article > .header > .delete-button:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+main > section.list > article > .header > .delete-button:hover,
+main > section.list > article > .header > .delete-button:active {
+    color: red;
 }
 
 /* Airline */
@@ -179,7 +212,7 @@ main > .list > .client > div {
     flex: 0 50%;
 }
 
-main > .list > .client > div:nth-child(2n + 1):not(.email) {
+main > .list > .client > div:nth-child(2n):not(.email) {
     margin-bottom: var(--text-gap);
 }
 

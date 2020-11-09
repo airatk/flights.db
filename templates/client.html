@@ -3,7 +3,7 @@
 
 {% block forms %}
     <form id="client-add" class="box" action="{{ url_for('client.add_client') }}" method="post">
-        <input placeholder="номер и серия паспорта" name="personal-id" type="number" required>
+        <input placeholder="номер и серия паспорта" name="personal-id" type="text" required>
         <input placeholder="имя" name="name" type="text" required>
         <input placeholder="дата рождения" name="birth-date" type="text" required>
         <input placeholder="телефон" name="phone" type="text" required>
@@ -13,7 +13,7 @@
     </form>
     
     <form id="client-search" class="box" action="{{ url_for('client.search_client') }}" method="post">
-        <input placeholder="введите паспорт или имя покупателя..." name="query" type="search" required>
+        <input placeholder="введите паспорт или имя покупателя..." name="search_query" type="search" required>
         
         <select name="sorting">
             <option selected value="no-sort">не сортировать</option>
@@ -27,23 +27,29 @@
         <input value="найти покупателя" type="submit">
     </form>
     
+    <form id="client-ticket-search" class="box" action="{{ url_for('client.search_client_ticket') }}" method="post">
+        <input placeholder="введите паспорт или имя покупателя..." name="search_query" type="search" required>
+        
+        <input value="найти покупателя и его авиабилеты" type="submit">
+    </form>
+    
     <form id="ticket-add" class="box" action="{{ url_for('client.add_ticket') }}" method="post">
         <input placeholder="код билета" name="ticket-code" type="text" required>
-        <input placeholder="номер и серия паспорта" name="personal-id" type="number" required>
+        <input placeholder="номер и серия паспорта" name="personal-id" type="text" required>
         <input placeholder="код рейса" name="flight-code" type="text" required>
         <select name="status">
-            <option value="available" selected>доступен</option>
-            <option value="delayed">задержан</option>
-            <option value="on-its-way">в пути</option>
-            <option value="done">окончен</option>
-            <option value="cancelled">отменён</option>
+            <option value="куплен" selected>куплен</option>
+            <option value="задержан">задержан</option>
+            <option value="в пути">в пути</option>
+            <option value="окончен">окончен</option>
+            <option value="отменён">отменён</option>
         </select>
         
         <input value="добавить авиабилет" type="submit">
     </form>
     
     <form id="ticket-search" class="box" action="{{ url_for('client.search_ticket') }}" method="post">
-        <input placeholder="введите код авиабилета..." name="query" type="search" required>
+        <input placeholder="введите код авиабилета..." name="search_query" type="search" required>
         
         <select name="sorting">
             <option selected value="no-sort">не сортировать</option>
@@ -61,52 +67,14 @@
         <input value="найти авиабилет" type="submit">
     </form>
     
-    <form id="ticket-search-by-client-personal-id" class="box" action="{{ url_for('client.search_ticket_by_client_personal_id') }}" method="post">
-        <input placeholder="введите паспорт покупателя..." name="query" type="search" required>
-        
-        <select name="sorting">
-            <option selected value="no-sort">не сортировать</option>
-            
-            <optgroup label="сортировать по коду билета">
-                <option value="ticket-code-ascending">по возрастанию</option>
-                <option value="ticket-code-descending">по убыванию</option>
-            </optgroup>
-            <optgroup label="сортировать по коду рейса">
-                <option value="flight-code-ascending">по возрастанию</option>
-                <option value="flight-code-descending">по убыванию</option>
-            </optgroup>
-        </select>
-        
-        <input value="найти авиабилет по паспорту покупателя" type="submit">
-    </form>
-    
-    <form id="ticket-search-by-flight-code" class="box" action="{{ url_for('client.search_ticket_by_flight_code') }}" method="post">
-        <input placeholder="введите код рейса..." name="query" type="search" required>
-        
-        <select name="sorting">
-            <option selected value="no-sort">не сортировать</option>
-            
-            <optgroup label="сортировать по коду билета">
-                <option value="ticket-code-ascending">по возрастанию</option>
-                <option value="ticket-code-descending">по убыванию</option>
-            </optgroup>
-            <optgroup label="сортировать по коду рейса">
-                <option value="flight-code-ascending">по возрастанию</option>
-                <option value="flight-code-descending">по убыванию</option>
-            </optgroup>
-        </select>
-        
-        <input value="найти авиабилет по коду рейса" type="submit">
-    </form>
-    
     <form id="ticket-edit" class="box" action="{{ url_for('client.edit_ticket') }}" method="post">
         <input placeholder="код билета" name="ticket-code" type="text" required>
         <select name="status">
-            <option value="available" selected>доступен</option>
-            <option value="delayed">задержан</option>
-            <option value="on-its-way">в пути</option>
-            <option value="done">окончен</option>
-            <option value="cancelled">отменён</option>
+            <option value="куплен" selected>куплен</option>
+            <option value="задержан">задержан</option>
+            <option value="в пути">в пути</option>
+            <option value="окончен">окончен</option>
+            <option value="отменён">отменён</option>
         </select>
         
         <input value="изменить статус авиабилета" type="submit">
@@ -118,14 +86,14 @@
         <article class="box client">
             <div class="header">
                 <div class="title">Покупатель</div>
-                <a class="delete-button" onclick="return confirm('Удалить покупателя % имя %?')" href="{{ url_for('client.delete_client') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить покупателя {{ client[1] }}?')" href="{{ url_for('client.delete_client', personal_id=client[0]) }}">x</a>
             </div>
             
-            <div class="personal-id">% номер и серия паспорта %</div>
-            <div class="birth-date">% дата рождения %</div>
-            <div class="name">% имя %</div>
-            <div class="phone">% телефон %</div>
-            <div class="email">% электронная почта %</div>
+            <div class="personal-id">{{ client[0] }}</div>
+            <div class="birth-date">{{ client[2] }}</div>
+            <div class="name">{{ client[1] }}</div>
+            <div class="phone">{{ client[3] }}</div>
+            <div class="email">{{ client[4] }}</div>
         </article>
     {% endfor %}
     
@@ -133,13 +101,13 @@
         <article class="box ticket">
             <div class="header">
                 <div class="title">Авиабилет</div>
-                <a class="delete-button" onclick="return confirm('Удалить авиабилет % код %?')" href="{{ url_for('client.delete_ticket') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить авиабилет {{ ticket[0] }}?')" href="{{ url_for('client.delete_ticket', ticket_code=ticket[0]) }}">x</a>
             </div>
             
-            <div class="ticket-code">% код %</div>
-            <div class="flight-code">% код рейса %</div>
-            <div class="personal-id">% номер и серия паспорта %</div>
-            <div class="status">% статус %</div>
+            <div class="ticket-code">{{ ticket[0] }}</div>
+            <div class="flight-code">{{ ticket[2] }}</div>
+            <div class="personal-id">{{ ticket[1] }}</div>
+            <div class="status">{{ ticket[3] }}</div>
         </article>
     {% endfor %}
     

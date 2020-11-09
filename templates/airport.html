@@ -7,15 +7,15 @@
         <input placeholder="название" name="name" type="text" required>
         <input placeholder="город" name="city" type="text" required>
         <input placeholder="страна" name="country" type="text" required>
-        <input placeholder="долгота" name="longitude" type="number" step="0.0001" required>
-        <input placeholder="широта" name="latitude" type="number" step="0.0001" required>
+        <input placeholder="долгота" name="longitude" type="number" step="0.001" required>
+        <input placeholder="широта" name="latitude" type="number" step="0.001" required>
         <input placeholder="часовой пояс" name="timezone" type="text" required>
         
         <input value="добавить аэропорт" type="submit">
     </form>
     
     <form id="airport-search" class="box" action="{{ url_for('airport.search_airport') }}" method="post">
-        <input placeholder="введите код, название, город или страну аэропорта..." name="query" type="search" required>
+        <input placeholder="введите код, название, город или страну аэропорта..." name="search_query" type="search" required>
         
         <select name="sorting">
             <option selected value="no-sort">не сортировать</option>
@@ -59,7 +59,7 @@
     </form>
     
     <form id="flight-search" class="box" action="{{ url_for('airport.search_flight') }}" method="post">
-        <input placeholder="введите код или дату рейса..." name="query" type="search" required>
+        <input placeholder="введите код или дату рейса..." name="search_query" type="search" required>
         
         <select name="sorting">
             <option selected value="no-sort">не сортировать</option>
@@ -85,33 +85,6 @@
         <input value="найти рейс" type="submit">
     </form>
     
-    <form id="flight-search-by-airport-code" class="box" action="{{ url_for('airport.search_flight_by_airport_code') }}" method="post">
-        <input placeholder="введите код аэропорта..." name="query" type="search" required>
-        
-        <select name="sorting">
-            <option selected value="no-sort">не сортировать</option>
-            
-            <optgroup label="сортировать по дате отбытия">
-                <option value="departure-date-ascending">по возрастанию</option>
-                <option value="departure-date-descending">по убыванию</option>
-            </optgroup>
-            <optgroup label="сортировать по дате прибытия">
-                <option value="arrival-date-ascending">по возрастанию</option>
-                <option value="arrival-date-descending">по убыванию</option>
-            </optgroup>
-            <optgroup label="сортировать по классу">
-                <option value="seat-class-ascending">по возрастанию</option>
-                <option value="seat-class-descending">по убыванию</option>
-            </optgroup>
-            <optgroup label="сортировать по цене">
-                <option value="price-ascending">по возрастанию</option>
-                <option value="price-descending">по убыванию</option>
-            </optgroup>
-        </select>
-        
-        <input value="найти рейс по коду аэропорта" type="submit">
-    </form>
-    
     <form id="flight-edit" class="box" action="{{ url_for('airport.edit_flight') }}" method="post">
         <input placeholder="код рейса" name="flight-code" type="text" required>
         <input placeholder="цена" name="price" type="number" step="0.01" required>
@@ -125,16 +98,16 @@
         <article class="box airport">
             <div class="header">
                 <div class="title">Аэропорт</div>
-                <a class="delete-button" onclick="return confirm('Удалить аэропорт % название %?')" href="{{ url_for('airport.delete_airport') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить аэропорт {{ airport[1] }}?')" href="{{ url_for('airport.delete_airport', airport_code=airport[0]) }}">x</a>
             </div>
             
-            <div class="airport-code">% код %</div>
-            <div class="name">% название %</div>
-            <div class="city">город: % город %</div>
-            <div class="country">страна: % страна %</div>
-            <div class="longitude">долгота: % долгота %</div>
-            <div class="latitude">широта: % широта %</div>
-            <div class="timezone">% часовой пояс %</div>
+            <div class="airport-code">{{ airport[0] }}</div>
+            <div class="name">{{ airport[1] }}</div>
+            <div class="city">город: {{ airport[2] }}</div>
+            <div class="country">страна: {{ airport[3] }}</div>
+            <div class="longitude">долгота: {{ airport[4] }}</div>
+            <div class="latitude">широта: {{ airport[5] }}</div>
+            <div class="timezone">{{ airport[6] }}</div>
         </article>
     {% endfor %}
     
@@ -142,30 +115,30 @@
         <article class="box flight">
             <div class="header">
                 <div class="title">Рейс</div>
-                <a class="delete-button" onclick="return confirm('Удалить рейс % код %?')" href="{{ url_for('airport.delete_flight') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить рейс {{ flight[0] }}?')" href="{{ url_for('airport.delete_flight', flight_code=flight[0]) }}">x</a>
             </div>
             
-            <div class="flight-code">% код %</div>
+            <div class="flight-code">{{ flight[0] }}</div>
             
             <div class="departure-title">отбытие</div>
             <div class="arrival-title">прибытие</div>
             
-            <div class="departure-airport-code">% код аэропорта отбытия %</div>
-            <div class="arrival-airport-code">% код аэропорта прибытия %</div>
-            <div class="departure-date">% дата отбытия %</div>
-            <div class="arrival-date">% дата прибытия %</div>
-            <div class="departure-time">% время отбытия %</div>
-            <div class="arrival-time">% время прибытия %</div>
+            <div class="departure-airport-code">{{ flight[1] }}</div>
+            <div class="arrival-airport-code">{{ flight[2] }}</div>
+            <div class="departure-date">{{ flight[3] }}</div>
+            <div class="arrival-date">{{ flight[4] }}</div>
+            <div class="departure-time">{{ flight[5] }}</div>
+            <div class="arrival-time">{{ flight[6] }}</div>
             
-            <div class="time">время в пути: % время в пути %</div>
-            <div class="miles">мили: % мили %</div>
+            <div class="time">время в пути: {{ flight[7] }}</div>
+            <div class="miles">мили: {{ flight[8] }}</div>
             
             <div class="seat-title">место</div>
             
-            <div class="seat-class">% класс %</div>
-            <div class="seat-number">% номер места %</div>
+            <div class="seat-class">{{ flight[9] }}</div>
+            <div class="seat-number">{{ flight[10] }}</div>
             
-            <div class="price">% цена %</div>
+            <div class="price">{{ flight[11] }} рублей</div>
         </article>
     {% endfor %}
     

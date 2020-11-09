@@ -16,10 +16,12 @@
                 <a href="{{ url_for('show_base_page') }}">Рейсы — Самолёты</a>
             </div>
             
+            <a class="drop-database-button" onclick="return confirm('Сбросить базу данных?')" href="{{ url_for('drop_database') }}">сбросить</br>базу данных</a>
+            
             <nav class="navigation">
-                <a href="{{ url_for('show_airline_page') }}">сотрудник авиакомпании</a>
-                <a href="{{ url_for('show_airport_page') }}">сотрудник аэропорта</a>
-                <a href="{{ url_for('show_client_page') }}">покупатель</a>
+                <a href="{{ url_for('airline.show_page') }}">сотрудник авиакомпании</a>
+                <a href="{{ url_for('airport.show_page') }}">сотрудник аэропорта</a>
+                <a href="{{ url_for('client.show_page') }}">покупатель</a>
             </nav>
         </header>
         

@@ -5,7 +5,16 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
-      location = "group:app.py">
+      location = "group:/Users/airatk/Documents/University/&#x411;&#x430;&#x437;&#x44b; &#x434;&#x430;&#x43d;&#x43d;&#x44b;&#x445;/&#x41a;&#x443;&#x440;&#x441;&#x43e;&#x432;&#x430;&#x44f; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x430;/flights.db/app.py">
+   </FileRef>
+   <FileRef
+      location = "group:airline.py">
+   </FileRef>
+   <FileRef
+      location = "group:airport.py">
+   </FileRef>
+   <FileRef
+      location = "group:client.py">
    </FileRef>
    <Group
       location = "group:templates"

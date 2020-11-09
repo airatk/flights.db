@@ -6,7 +6,7 @@ header {
 /* Title */
 
 header > .title {
-    flex: 0 calc(60% - 2*var(--border-gap));
+    flex: 50%;
     
     height: var(--header-height);
     
@@ -26,10 +26,34 @@ header > .title > a:visited {
 }
 
 
+/* Drop database button */
+
+header > .drop-database-button {
+    flex: 10%;
+    
+    margin: auto;
+    
+    font-size: 11px;
+    text-align: center;
+}
+
+header > .drop-database-button:link,
+header > .drop-database-button:visited {
+    color: darkred;
+    text-decoration: none;
+}
+
+header > .drop-database-button:hover,
+header > .drop-database-button:active {
+    color: red;
+    text-decoration: underline;
+}
+
+
 /* Navigation */
 
 header > .navigation {
-    flex: 0 calc(40% - 2*var(--border-gap));
+    flex: 40%;
     
     display: flex;
     

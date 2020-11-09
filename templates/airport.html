@@ -2,7 +2,7 @@
 
 
 {% block forms %}
-    <form id="airport-add" class="box" action="{{ url_for('response_to_form_on_airport_page') }}" method="post">
+    <form id="airport-add" class="box" action="{{ url_for('airport.add_airport') }}" method="post">
         <input placeholder="код аэропорта" name="airport-code" type="text" required>
         <input placeholder="название" name="name" type="text" required>
         <input placeholder="город" name="city" type="text" required>
@@ -14,7 +14,34 @@
         <input value="добавить аэропорт" type="submit">
     </form>
     
-    <form id="flight-add" class="box" action="{{ url_for('response_to_form_on_airport_page') }}" method="post">
+    <form id="airport-search" class="box" action="{{ url_for('airport.search_airport') }}" method="post">
+        <input placeholder="введите код, название, город или страну аэропорта..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по коду аэропорта">
+                <option value="airport-code-ascending">по возрастанию</option>
+                <option value="airport-code-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по названию">
+                <option value="name-ascending">по возрастанию</option>
+                <option value="name-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по городу">
+                <option value="city-ascending">по возрастанию</option>
+                <option value="city-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по стране">
+                <option value="country-ascending">по возрастанию</option>
+                <option value="country-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти аэропорт" type="submit">
+    </form>
+    
+    <form id="flight-add" class="box" action="{{ url_for('airport.add_flight') }}" method="post">
         <input placeholder="код рейса" name="flight-code" type="text" required>
         <input placeholder="код аэропорта отбытия" name="departure-airport" type="text" required>
         <input placeholder="код аэропорта прибытия" name="arrival-airport" type="text" required>
@@ -30,6 +57,67 @@
         
         <input value="добавить рейс" type="submit">
     </form>
+    
+    <form id="flight-search" class="box" action="{{ url_for('airport.search_flight') }}" method="post">
+        <input placeholder="введите код или дату рейса..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по дате отбытия">
+                <option value="departure-date-ascending">по возрастанию</option>
+                <option value="departure-date-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по дате прибытия">
+                <option value="arrival-date-ascending">по возрастанию</option>
+                <option value="arrival-date-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по классу">
+                <option value="seat-class-ascending">по возрастанию</option>
+                <option value="seat-class-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по цене">
+                <option value="price-ascending">по возрастанию</option>
+                <option value="price-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти рейс" type="submit">
+    </form>
+    
+    <form id="flight-search-by-airport-code" class="box" action="{{ url_for('airport.search_flight_by_airport_code') }}" method="post">
+        <input placeholder="введите код аэропорта..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по дате отбытия">
+                <option value="departure-date-ascending">по возрастанию</option>
+                <option value="departure-date-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по дате прибытия">
+                <option value="arrival-date-ascending">по возрастанию</option>
+                <option value="arrival-date-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по классу">
+                <option value="seat-class-ascending">по возрастанию</option>
+                <option value="seat-class-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по цене">
+                <option value="price-ascending">по возрастанию</option>
+                <option value="price-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти рейс по коду аэропорта" type="submit">
+    </form>
+    
+    <form id="flight-edit" class="box" action="{{ url_for('airport.edit_flight') }}" method="post">
+        <input placeholder="код рейса" name="flight-code" type="text" required>
+        <input placeholder="цена" name="price" type="number" step="0.01" required>
+        
+        <input value="изменить цену рейса" type="submit">
+    </form>
 {% endblock %}
 
 {% block list %}
@@ -37,7 +125,7 @@
         <article class="box airport">
             <div class="header">
                 <div class="title">Аэропорт</div>
-                <a class="delete-button" onclick="return confirm('Удалить аэропорт % название %?')" href="{{ url_for('response_to_form_on_airport_page') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить аэропорт % название %?')" href="{{ url_for('airport.delete_airport') }}">x</a>
             </div>
             
             <div class="airport-code">% код %</div>
@@ -54,7 +142,7 @@
         <article class="box flight">
             <div class="header">
                 <div class="title">Рейс</div>
-                <a class="delete-button" onclick="return confirm('Удалить рейс % код %?')" href="{{ url_for('response_to_form_on_airport_page') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить рейс % код %?')" href="{{ url_for('airport.delete_flight') }}">x</a>
             </div>
             
             <div class="flight-code">% код %</div>

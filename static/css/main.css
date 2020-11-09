@@ -8,7 +8,7 @@ main {
 /* Forms */
 
 main > .forms {
-    flex: 0 calc(40% - 2*var(--border-gap));
+    flex: 40%;
     
     padding: var(--border-gap);
     
@@ -31,7 +31,8 @@ main > .forms > form + form {
     margin-top: var(--border-gap);
 }
 
-main > .forms > form > input {
+main > .forms > form > input,
+main > .forms > form > select {
     margin: 0;
     padding: 5px;
 }
@@ -55,7 +56,7 @@ main > .forms > form > select {
 /* List */
 
 main > .list {
-    flex: 0 calc(60% - 2*var(--border-gap));
+    flex: 60%;
     
     padding: var(--border-gap);
     
@@ -83,7 +84,7 @@ main > .list > article > div {
 }
 
 main > section.list > article > .header {
-    flex: 0 100%;
+    flex: 100%;
     
     display: flex;
     
@@ -99,7 +100,7 @@ main > section.list > article > .header > .title {
 }
 
 main > section.list > article > .header > .delete-button {
-    flex: 0;
+    flex:;
     
     text-align: right;
 }
@@ -126,7 +127,7 @@ main > .list > .airline > .name {
 }
 
 main > .list > .airline > .site {
-    flex: 0 100%;
+    flex: 100%;
 }
 
 /* Plane */
@@ -137,21 +138,21 @@ main > .list > .plane > .seats-count {
 }
 
 main > .list > .plane > .name {
-    flex: 0 70%;
+    flex: 70%;
 }
 
 main > .list > .plane > .seats-count {
-    flex: 0 30%;
+    flex: 30%;
 }
 
 /* Airport */
 
 main > .list > .airport > .airport-code {
-    flex: 0 30%;
+    flex: 30%;
 }
 
 main > .list > .airport > .name {
-    flex: 0 70%;
+    flex: 70%;
     
     margin-bottom: var(--text-gap);
 }
@@ -160,13 +161,13 @@ main > .list > .airport > .city,
 main > .list > .airport > .country,
 main > .list > .airport > .longitude,
 main > .list > .airport > .latitude {
-    flex: 0 50%;
+    flex: 50%;
     
     margin-bottom: var(--text-gap);
 }
 
 main > .list > .airport > .timezone {
-    flex: 0 100%;
+    flex: 100%;
     
     text-align: right;
 }
@@ -174,11 +175,11 @@ main > .list > .airport > .timezone {
 /* Flight */
 
 main > .list > .flight > div {
-    flex: 0 50%;
+    flex: 50%;
 }
 
 main > .list > .flight > .flight-code {
-    flex: 0 100%;
+    flex: 100%;
 }
 
 main > .list > .flight > div:nth-child(2n):not(.price),
@@ -196,11 +197,11 @@ main > .list > .flight > .seat-title {
 }
 
 main > .list > .flight > .seat-title {
-    flex: 0 100%;
+    flex: 100%;
 }
 
 main > .list > .flight > .price {
-    flex: 0 100%;
+    flex: 100%;
     
     text-align: right;
 }
@@ -209,7 +210,7 @@ main > .list > .flight > .price {
 /* Client */
 
 main > .list > .client > div {
-    flex: 0 50%;
+    flex: 50%;
 }
 
 main > .list > .client > div:nth-child(2n):not(.email) {
@@ -217,13 +218,13 @@ main > .list > .client > div:nth-child(2n):not(.email) {
 }
 
 main > .list > .client > .name {
-    flex: 0 100%;
+    flex: 100%;
 }
 
 /* Ticket */
 
 main > .list > .ticket > .status {
-    flex: 0 100%;
+    flex: 100%;
     
     margin-top: var(--text-gap);
     

@@ -2,7 +2,7 @@
 
 
 {% block forms %}
-    <form id="airline-add" class="box" action="{{ url_for('response_to_form_on_airline_page') }}" method="post">
+    <form id="airline-add" class="box" action="{{ url_for('airline.add_airline') }}" method="post">
         <input placeholder="код авиакомпании" name="airline-code" type="text" required>
         <input placeholder="название" name="name" type="text" required>
         <input placeholder="сайт" name="site" type="url" required>
@@ -10,7 +10,22 @@
         <input value="добавить авиакомпанию" type="submit">
     </form>
     
-    <form id="plane-add" class="box" action="{{ url_for('response_to_form_on_airline_page') }}" method="post">
+    <form id="airline-search" class="box" action="{{ url_for('airline.search_airline') }}" method="post">
+        <input placeholder="введите код или название авиакомпании..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по названию">
+                <option value="name-ascending">по возрастанию</option>
+                <option value="name-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти авиакомпанию" type="submit">
+    </form>
+    
+    <form id="plane-add" class="box" action="{{ url_for('airline.add_plane') }}" method="post">
         <input placeholder="название" name="name" type="text" required>
         <input placeholder="код самолёта" name="plane-code" type="text" required>
         <input placeholder="код авиакомпании" name="airline-code" type="text" required>
@@ -19,6 +34,63 @@
         
         <input value="добавить самолёт" type="submit">
     </form>
+    
+    <form id="plane-search" class="box" action="{{ url_for('airline.search_plane') }}" method="post">
+        <input placeholder="введите код или название самолёта..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по названию">
+                <option value="name-ascending">по возрастанию</option>
+                <option value="name-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по количеству мест">
+                <option value="seats-count-ascending">по возрастанию</option>
+                <option value="seats-count-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти самолёт" type="submit">
+    </form>
+    
+    <form id="plane-search-by-airline-code" class="box" action="{{ url_for('airline.search_plane_by_airline_code') }}" method="post">
+        <input placeholder="введите код авиакомпании..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по названию">
+                <option value="name-ascending">по возрастанию</option>
+                <option value="name-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по количеству мест">
+                <option value="seats-count-ascending">по возрастанию</option>
+                <option value="seats-count-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти самолёт по коду авиакомпании" type="submit">
+    </form>
+    
+    <form id="plane-search-by-flight-code" class="box" action="{{ url_for('airline.search_plane_by_flight_code') }}" method="post">
+        <input placeholder="введите код рейса..." name="query" type="search" required>
+        
+        <select name="sorting">
+            <option selected value="no-sort">не сортировать</option>
+            
+            <optgroup label="сортировать по названию">
+                <option value="name-ascending">по возрастанию</option>
+                <option value="name-descending">по убыванию</option>
+            </optgroup>
+            <optgroup label="сортировать по количеству мест">
+                <option value="seats-count-ascending">по возрастанию</option>
+                <option value="seats-count-descending">по убыванию</option>
+            </optgroup>
+        </select>
+        
+        <input value="найти самолёт по коду рейса" type="submit">
+    </form>
 {% endblock %}
 
 {% block list %}
@@ -26,7 +98,7 @@
         <article class="box airline">
             <div class="header">
                 <div class="title">Авиакомпания</div>
-                <a class="delete-button" onclick="return confirm('Удалить авиакомпанию % название %?')" href="{{ url_for('response_to_form_on_airline_page') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить авиакомпанию % название %?')" href="{{ url_for('airline.delete_airline') }}">x</a>
             </div>
             
             <div class="airline-code">% IATA %</div>
@@ -39,7 +111,7 @@
         <article class="box plane">
             <div class="header">
                 <div class="title">Самолёт</div>
-                <a class="delete-button" onclick="return confirm('Удалить самолёт % название %?')" href="{{ url_for('response_to_form_on_airline_page') }}">x</a>
+                <a class="delete-button" onclick="return confirm('Удалить самолёт % название %?')" href="{{ url_for('airline.delete_plane') }}">x</a>
             </div>
             
             <div class="name">% название %</div>

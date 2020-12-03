@@ -24,13 +24,15 @@ def drop_database():
     execute(query="DROP DATABASE IF EXISTS flights_db;")
     execute(query="CREATE DATABASE flights_db;")
     
-    execute(query="""
+    create_airline_table_query: str = """
         CREATE TABLE airline (
             airline_code VARCHAR(6) PRIMARY KEY,
             name VARCHAR(120),
             website VARCHAR(60)
         );
-        
+    """
+    
+    create_plane_table_query: str = """
         CREATE TABLE plane (
             plane_code VARCHAR(6) PRIMARY KEY,
             airline_code VARCHAR(6),
@@ -38,7 +40,9 @@ def drop_database():
             name VARCHAR(120),
             seats_count SMALLINT
         );
-        
+    """
+    
+    create_airport_table_query: str = """
         CREATE TABLE airport (
             airport_code VARCHAR(6) PRIMARY KEY,
             name VARCHAR(120),
@@ -48,7 +52,9 @@ def drop_database():
             latitude NUMERIC(7, 4),
             timezone VARCHAR(120)
         );
-        
+    """
+    
+    create_flight_table_query: str = """
         CREATE TABLE flight (
             flight_code VARCHAR(6) PRIMARY KEY,
             departure_airport_code VARCHAR(6),
@@ -63,7 +69,9 @@ def drop_database():
             seat_number SMALLINT,
             price NUMERIC(9, 2)
         );
-        
+    """
+    
+    create_client_table_query: str = """
         CREATE TABLE client (
             personal_id VARCHAR(10) PRIMARY KEY,
             name VARCHAR(40),
@@ -71,24 +79,47 @@ def drop_database():
             phone VARCHAR(16),
             email VARCHAR(40)
         );
-        
+    """
+    
+    create_ticket_table_query: str = """
         CREATE TABLE ticket (
             ticket_code VARCHAR(6) PRIMARY KEY,
             personal_id VARCHAR(10),
             flight_code VARCHAR(6),
             status VARCHAR(12)
         );
-    """, database="flights_db")
+    """
     
-    execute(query="""
+    execute(query="\n\n".join([
+        create_airline_table_query,
+        create_plane_table_query,
+        create_airport_table_query,
+        create_flight_table_query,
+        create_client_table_query,
+        create_ticket_table_query
+    ]), database="flights_db")
+    
+    
+    add_foreign_keys_to_plane_table: str = """
         ALTER TABLE plane ADD FOREIGN KEY (airline_code) REFERENCES airline(airline_code) ON DELETE CASCADE ON UPDATE CASCADE;
         ALTER TABLE plane ADD FOREIGN KEY (flight_code) REFERENCES flight(flight_code) ON DELETE NO ACTION ON UPDATE CASCADE;
-        
+    """
+    
+    add_foreign_keys_to_flight_table: str = """
         ALTER TABLE flight ADD FOREIGN KEY (departure_airport_code) REFERENCES airport(airport_code) ON DELETE NO ACTION ON UPDATE CASCADE;
         ALTER TABLE flight ADD FOREIGN KEY (arrival_airport_code) REFERENCES airport(airport_code) ON DELETE NO ACTION ON UPDATE CASCADE;
-        
+    """
+    
+    add_foreign_keys_to_ticket_table: str = """
         ALTER TABLE ticket ADD FOREIGN KEY (personal_id) REFERENCES client(personal_id) ON DELETE CASCADE ON UPDATE CASCADE;
         ALTER TABLE ticket ADD FOREIGN KEY (flight_code) REFERENCES flight(flight_code) ON DELETE CASCADE ON UPDATE CASCADE;
-    """, database="flights_db")
+    """
+    
+    execute(query="\n\n".join([
+        add_foreign_keys_to_plane_table,
+        add_foreign_keys_to_flight_table,
+        add_foreign_keys_to_ticket_table
+    ]), database="flights_db")
+    
     
     return render_template("base.html")
